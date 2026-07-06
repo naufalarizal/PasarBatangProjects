@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, FileText, CheckCircle, Clock, Calendar, ChevronRight, MessageSquare } from 'lucide-react';
 import { MOCK_STATS, MOCK_SERVICES } from '../mockData';
 import { supabase, isSupabaseConfigured } from '../supabaseClient';
+import { usePengaduan } from '../context/PengaduanContext';
 
 export default function Home() {
+  const { openModal } = usePengaduan();
   const [latestNews, setLatestNews] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -96,16 +98,24 @@ export default function Home() {
               <Link to="/layanan" className="btn btn-primary" style={{ padding: '0.9rem 1.8rem' }}>
                 Layanan Publik <ArrowRight size={18} />
               </Link>
-              <Link to="/kontak" className="btn" style={{
-                padding: '0.9rem 1.8rem',
-                backgroundColor: 'var(--color-accent)',
-                color: 'white',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.5rem'
-              }} onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#b45309'} onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'var(--color-accent)'}>
+              <button
+                onClick={openModal}
+                className="btn"
+                style={{
+                  padding: '0.9rem 1.8rem',
+                  backgroundColor: 'var(--color-accent)',
+                  color: 'white',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  border: 'none',
+                  cursor: 'pointer'
+                }}
+                onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#b45309'}
+                onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'var(--color-accent)'}
+              >
                 Pengaduan Masyarakat <MessageSquare size={18} />
-              </Link>
+              </button>
               <Link to="/profil" className="btn btn-outline-white" style={{ padding: '0.9rem 1.8rem' }}>
                 Pelajari Profil
               </Link>

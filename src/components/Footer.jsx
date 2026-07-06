@@ -29,7 +29,6 @@ export default function Footer() {
               <li><Link to="/layanan" className="footer-link">Layanan Publik</Link></li>
               <li><Link to="/berita" className="footer-link">Berita & Kegiatan</Link></li>
               <li><Link to="/galeri" className="footer-link">Galeri Foto</Link></li>
-              <li><Link to="/kontak" className="footer-link">Kontak & Hubungi Kami</Link></li>
             </ul>
           </div>
 

@@ -1,23 +1,12 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+// Kredensial Supabase — hardcoded karena sudah dikonfigurasi
+const supabaseUrl = 'https://vsjiblsysajpesvaznwq.supabase.co';
+const supabaseAnonKey = 'sb_publishable_UjwDdAuHQ55cAjjax_l4QA_yg9q-MMe';
 
-// Cek apakah kredensial valid dan bukan placeholder
-export const isSupabaseConfigured = 
-  supabaseUrl && 
-  supabaseUrl !== '' && 
-  supabaseUrl.indexOf('your-project-id') === -1 &&
-  supabaseAnonKey && 
-  supabaseAnonKey !== '' && 
-  supabaseAnonKey !== 'your-anon-key-here';
+// Selalu terkoneksi karena kredensial sudah valid
+export const isSupabaseConfigured = true;
 
-export const supabase = isSupabaseConfigured 
-  ? createClient(supabaseUrl, supabaseAnonKey) 
-  : null;
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-if (!isSupabaseConfigured) {
-  console.warn(
-    "Supabase belum dikonfigurasi dengan benar. Menggunakan data lokal (Mock Data) untuk demo website."
-  );
-}
+console.info('Supabase berhasil terkoneksi ke:', supabaseUrl);

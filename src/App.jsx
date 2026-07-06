@@ -11,29 +11,35 @@ import Galeri from './pages/Galeri';
 import Kontak from './pages/Kontak';
 import Admin from './pages/Admin';
 import FloatingPengaduan from './components/FloatingPengaduan';
+import PengaduanModal from './components/PengaduanModal';
+import { PengaduanProvider } from './context/PengaduanContext';
 import './App.css';
 
 function App() {
   return (
-    <Router>
-      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-        <Navbar />
-        <main style={{ flexGrow: 1 }}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/profil" element={<Profil />} />
-            <Route path="/layanan" element={<Layanan />} />
-            <Route path="/berita" element={<Berita />} />
-            <Route path="/berita/:id" element={<BeritaDetail />} />
-            <Route path="/galeri" element={<Galeri />} />
-            <Route path="/kontak" element={<Kontak />} />
-            <Route path="/admin" element={<Admin />} />
-          </Routes>
-        </main>
-        <Footer />
-        <FloatingPengaduan />
-      </div>
-    </Router>
+    <PengaduanProvider>
+      <Router>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+          <Navbar />
+          <main style={{ flexGrow: 1 }}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/profil" element={<Profil />} />
+              <Route path="/layanan" element={<Layanan />} />
+              <Route path="/berita" element={<Berita />} />
+              <Route path="/berita/:id" element={<BeritaDetail />} />
+              <Route path="/galeri" element={<Galeri />} />
+              <Route path="/kontak" element={<Kontak />} />
+              <Route path="/admin" element={<Admin />} />
+            </Routes>
+          </main>
+          <Footer />
+          <FloatingPengaduan />
+          {/* Modal Pengaduan Global — bisa dibuka dari halaman mana saja */}
+          <PengaduanModal />
+        </div>
+      </Router>
+    </PengaduanProvider>
   );
 }
 
