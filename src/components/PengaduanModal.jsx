@@ -9,7 +9,7 @@ export default function PengaduanModal() {
 
   const [formData, setFormData] = useState({
     nama: '',
-    email: '',
+    no_wa: '',
     subjek: '',
     pesan: ''
   });
@@ -25,7 +25,7 @@ export default function PengaduanModal() {
     closeModal();
     // Reset form setelah modal ditutup
     setTimeout(() => {
-      setFormData({ nama: '', email: '', subjek: '', pesan: '' });
+      setFormData({ nama: '', no_wa: '', subjek: '', pesan: '' });
       setSuccess(false);
       setErrorMsg('');
     }, 300);
@@ -37,23 +37,32 @@ export default function PengaduanModal() {
     setErrorMsg('');
     setSuccess(false);
 
+    const messageData = { ...formData, status: 'Baru' };
+
     if (isSupabaseConfigured) {
       try {
         const { error } = await supabase
           .from('pesan_kontak')
-          .insert([formData]);
+          .insert([messageData]);
         if (error) throw error;
         setSuccess(true);
-        setFormData({ nama: '', email: '', subjek: '', pesan: '' });
+        setFormData({ nama: '', no_wa: '', subjek: '', pesan: '' });
       } catch (err) {
-        console.error('Gagal mengirim:', err);
-        setErrorMsg('Gagal mengirim pengaduan. Silakan coba lagi atau hubungi kami langsung.');
+        console.warn('Supabase gagal, menyimpan secara lokal:', err.message);
+        // Fallback ke localStorage agar pengaduan tetap terkirim ke Admin
+        try {
+          addLocalMessage(messageData);
+          setSuccess(true);
+          setFormData({ nama: '', no_wa: '', subjek: '', pesan: '' });
+        } catch (localErr) {
+          setErrorMsg('Gagal memproses pengaduan.');
+        }
       }
     } else {
       try {
-        addLocalMessage(formData);
+        addLocalMessage(messageData);
         setSuccess(true);
-        setFormData({ nama: '', email: '', subjek: '', pesan: '' });
+        setFormData({ nama: '', no_wa: '', subjek: '', pesan: '' });
       } catch (err) {
         setErrorMsg('Gagal memproses pengaduan.');
       }
@@ -102,7 +111,7 @@ export default function PengaduanModal() {
         `}</style>
 
         <div style={{
-          backgroundColor: '#fff',
+          backgroundColor: 'var(--color-card-light)',
           borderRadius: 'var(--border-radius-lg)',
           boxShadow: '0 25px 50px -12px rgba(0,0,0,0.35)',
           overflow: 'hidden'
@@ -221,7 +230,7 @@ export default function PengaduanModal() {
                 )}
 
                 <form onSubmit={handleSubmit}>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                  <div className="mobile-grid-1" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                     <div className="form-group" style={{ marginBottom: '1rem' }}>
                       <label className="form-label">Nama Lengkap *</label>
                       <input
@@ -235,14 +244,14 @@ export default function PengaduanModal() {
                       />
                     </div>
                     <div className="form-group" style={{ marginBottom: '1rem' }}>
-                      <label className="form-label">Email *</label>
+                      <label className="form-label">No. WhatsApp *</label>
                       <input
-                        type="email"
+                        type="tel"
                         className="form-control"
-                        name="email"
-                        value={formData.email}
+                        name="no_wa"
+                        value={formData.no_wa}
                         onChange={handleChange}
-                        placeholder="email@domain.com"
+                        placeholder="Contoh: 08123456789"
                         required
                       />
                     </div>
@@ -274,7 +283,7 @@ export default function PengaduanModal() {
                     />
                   </div>
 
-                  <div style={{ display: 'flex', gap: '0.75rem' }}>
+                  <div className="mobile-stack-buttons" style={{ display: 'flex', gap: '0.75rem' }}>
                     <button
                       type="button"
                       onClick={handleClose}

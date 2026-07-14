@@ -130,7 +130,7 @@ export const MOCK_GALLERY = [
 ];
 
 // Helper database simulasi lokal berbasis LocalStorage
-const STORAGE_PREFIX = 'kelurahan_mekarsari_';
+const STORAGE_PREFIX = 'kelurahan_mekarsari_v2_';
 
 const getLocalStorageData = (key, defaultData) => {
   const data = localStorage.getItem(STORAGE_PREFIX + key);
@@ -146,32 +146,7 @@ const saveLocalStorageData = (key, data) => {
 };
 
 // Inisialisasi Default State Database Lokal
-export const getLocalRequests = () => getLocalStorageData('requests', [
-  {
-    id: 'req-1',
-    nama_pemohon: 'Ahmad Subagja',
-    nik: '3174092104850001',
-    email: 'ahmad.subagja@email.com',
-    no_hp: '081234567890',
-    layanan_id: 's1', // KTP-el
-    nama_layanan: 'Kartu Tanda Penduduk (KTP-el)',
-    keterangan: 'Penggantian KTP yang patah sudut kirinya.',
-    status: 'Diproses',
-    created_at: new Date(Date.now() - 24 * 60 * 60 * 1000 * 2).toISOString() // 2 hari lalu
-  },
-  {
-    id: 'req-2',
-    nama_pemohon: 'Dewi Lestari',
-    nik: '3174095408920002',
-    email: 'dewi.lestari@email.com',
-    no_hp: '089876543210',
-    layanan_id: 's3', // Domisili
-    nama_layanan: 'Surat Keterangan Domisili',
-    keterangan: 'Keperluan untuk melamar pekerjaan di luar kota.',
-    status: 'Selesai',
-    created_at: new Date(Date.now() - 24 * 60 * 60 * 1000 * 5).toISOString() // 5 hari lalu
-  }
-]);
+export const getLocalRequests = () => getLocalStorageData('requests', []);
 
 export const addLocalRequest = (request) => {
   const requests = getLocalRequests();
@@ -205,16 +180,7 @@ export const deleteLocalRequest = (id) => {
   saveLocalStorageData('requests', filtered);
 };
 
-export const getLocalMessages = () => getLocalStorageData('messages', [
-  {
-    id: 'msg-1',
-    nama: 'Budi Hartono',
-    email: 'budi.h@email.com',
-    subjek: 'Keluhan Penerangan Jalan Raya',
-    pesan: 'Mohon info mengenai perbaikan lampu jalan di sepanjang Jalan Melati Barat yang mati sudah hampir 2 minggu. Sangat rawan kecelakaan di malam hari.',
-    created_at: new Date(Date.now() - 24 * 60 * 60 * 1000 * 1).toISOString()
-  }
-]);
+export const getLocalMessages = () => getLocalStorageData('messages', []);
 
 export const addLocalMessage = (message) => {
   const messages = getLocalMessages();
@@ -228,11 +194,21 @@ export const addLocalMessage = (message) => {
   return newMessage;
 };
 
+export const updateLocalMessageStatus = (id, status) => {
+  const messages = getLocalMessages();
+  const index = messages.findIndex(m => m.id === id);
+  if (index !== -1) {
+    messages[index].status = status;
+    saveLocalStorageData('messages', messages);
+  }
+};
+
 export const deleteLocalMessage = (id) => {
   const messages = getLocalMessages();
   const filtered = messages.filter(m => m.id !== id);
   saveLocalStorageData('messages', filtered);
 };
+
 
 // Gabungan mock data berita untuk kelola admin lokal
 export const getLocalNews = () => getLocalStorageData('news', MOCK_NEWS);

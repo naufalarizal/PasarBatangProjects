@@ -39,7 +39,7 @@ export default function Profil() {
       <section className="section-padding container">
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))',
           gap: '4rem',
           alignItems: 'center'
         }}>
@@ -77,7 +77,7 @@ export default function Profil() {
         <div className="container">
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))',
             gap: '3rem'
           }}>
             {/* Visi */}
@@ -166,7 +166,7 @@ export default function Profil() {
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(240px, 100%), 1fr))',
           gap: '2.5rem'
         }}>
           {MOCK_OFFICIALS.map((official, idx) => (
@@ -201,7 +201,7 @@ export default function Profil() {
         <div className="container">
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))',
             gap: '4rem',
             alignItems: 'center'
           }}>
@@ -212,7 +212,7 @@ export default function Profil() {
                 Kelurahan Pasarbatang terletak strategis di pusat Kecamatan Brebes yang berbatasan langsung dengan aliran Kali Pemali di sebelah barat. Wilayah ini didominasi oleh kawasan pemukiman perkotaan yang padat, pusat perdagangan lokal, serta sentra industri rumah tangga dan UMKM yang menjadi penggerak ekonomi warga.
                 </p>
               
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '2rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(200px, 100%), 1fr))', gap: '1.5rem', marginBottom: '2rem' }}>
                 <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
                   <MapPin size={20} style={{ color: 'var(--color-primary)' }} />
                   <div>
@@ -247,15 +247,15 @@ export default function Profil() {
                 border: '1px solid var(--color-border)'
               }}>
                 <iframe 
-                  title="Peta Kelurahan Pasarbatang"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15843.435532057393!2d109.04358872719293!3d-6.847525389656819!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6fbc5cfbf7ba2d%3A0xd93f64e76a1f3de2!2sPasar%20Batang%2C%20Kec.%20Brebes%2C%20Kabupaten%20Brebes%2C%20Jawa%20Tengah!5e0!3m2!1sid!2sid!4v1715000000000!5m2!1sid!2sid"
-                  width="100%" 
-                  height="100%" 
-                  style={{ border: 0 }}
-                  allowFullScreen="" 
-                  loading="lazy" 
-                  referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
+  title="Peta Kelurahan Pasarbatang"
+  src="https://www.google.com/maps?q=Kantor+Kelurahan+Pasarbatang,-6.8649007,109.0383763&z=17&output=embed"
+  width="100%" 
+  height="100%" 
+  style={{ border: 0 }}
+  allowFullScreen="" 
+  loading="lazy" 
+  referrerPolicy="no-referrer-when-downgrade"
+></iframe>
               </div>
             </div>
           </div>

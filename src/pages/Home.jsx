@@ -4,6 +4,7 @@ import { ArrowRight, FileText, CheckCircle, Clock, Calendar, ChevronRight, Messa
 import { MOCK_STATS, MOCK_SERVICES } from '../mockData';
 import { supabase, isSupabaseConfigured } from '../supabaseClient';
 import { usePengaduan } from '../context/PengaduanContext';
+import AnimatedCounter from '../components/AnimatedCounter';
 
 export default function Home() {
   const { openModal } = usePengaduan();
@@ -57,7 +58,7 @@ export default function Home() {
         display: 'flex',
         alignItems: 'center',
         color: 'white',
-        padding: '2rem 0'
+        padding: '4rem 0 8rem 0'
       }}>
         <div className="container" style={{ zindex: 2 }}>
           <div style={{ maxWidth: '750px' }}>
@@ -74,7 +75,7 @@ export default function Home() {
               letterSpacing: '1px',
               marginBottom: '1.5rem'
             }}>
-              Selamat Datang di Portal Resmi
+              Selamat Datang di Website Resmi Kelurahan Pasarbatang
             </span>
             <h1 style={{
               fontSize: 'clamp(2.5rem, 5vw, 4rem)',
@@ -84,7 +85,7 @@ export default function Home() {
               fontFamily: 'var(--font-display)',
               color: '#ffffff'
             }}>
-              Membangun Pelayanan Publik <span style={{ color: '#34d399' }}>Mekarsari</span> Lebih Prima
+              Membangun Pelayanan Publik <span style={{ color: '#34d399' }}>PasarBatang</span> Lebih Prima
             </h1>
             <p style={{
               fontSize: 'clamp(1.05rem, 2vw, 1.25rem)',
@@ -94,10 +95,8 @@ export default function Home() {
             }}>
               Akses informasi profil wilayah, berita kegiatan, persyaratan dokumen, hingga pengajuan administrasi mandiri secara online dan transparan.
             </p>
-            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-              <Link to="/layanan" className="btn btn-primary" style={{ padding: '0.9rem 1.8rem' }}>
-                Layanan Publik <ArrowRight size={18} />
-              </Link>
+            <div className="mobile-stack-buttons" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+
               <button
                 onClick={openModal}
                 className="btn"
@@ -117,7 +116,7 @@ export default function Home() {
                 Pengaduan Masyarakat <MessageSquare size={18} />
               </button>
               <Link to="/profil" className="btn btn-outline-white" style={{ padding: '0.9rem 1.8rem' }}>
-                Pelajari Profil
+                Profil Kelurahan <ArrowRight size={18} />
               </Link>
             </div>
           </div>
@@ -126,7 +125,7 @@ export default function Home() {
 
       {/* 2. Statistik Section */}
       <section style={{
-        backgroundColor: '#ffffff',
+        backgroundColor: 'var(--color-card-light)',
         padding: '3rem 0',
         marginTop: '-4rem',
         position: 'relative',
@@ -138,7 +137,7 @@ export default function Home() {
       }} className="container">
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(220px, 100%), 1fr))',
           gap: '2rem',
           textAlign: 'center'
         }}>
@@ -153,7 +152,7 @@ export default function Home() {
                 color: 'var(--color-primary)',
                 fontFamily: 'var(--font-display)',
                 marginBottom: '0.25rem'
-              }}>{stat.value}</h3>
+              }}><AnimatedCounter value={stat.value} /></h3>
               <p style={{
                 fontWeight: 600,
                 color: 'var(--color-text-dark)',
@@ -173,7 +172,7 @@ export default function Home() {
       <section className="section-padding container">
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))',
           gap: '4rem',
           alignItems: 'center'
         }}>
@@ -252,7 +251,7 @@ export default function Home() {
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))',
             gap: '2rem',
             marginBottom: '3rem'
           }}>
@@ -326,7 +325,7 @@ export default function Home() {
         ) : (
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))',
             gap: '2rem'
           }}>
             {latestNews.map((news) => (

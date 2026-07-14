@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Landmark, Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import logoBrebes from '../assets/img/brebes.png';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -12,7 +13,7 @@ export default function Footer() {
           {/* Column 1: Brand & Bio */}
           <div className="footer-brand">
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem' }}>
-              <Landmark size={28} style={{ color: 'var(--color-primary)' }} />
+              <img src={logoBrebes} alt="Logo Kabupaten Brebes" style={{ width: '32px', height: '32px', objectFit: 'contain' }} />
               <h3 style={{ fontSize: '1.25rem', margin: 0, color: 'white' }}>Kelurahan Pasarbatang</h3>
             </div>
             <p style={{ fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>
@@ -44,26 +45,29 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Contact Info */}
+          {/* Column 4: Kontak */}
           <div>
-            <h4 className="footer-title">Hubungi Kami</h4>
-            <div className="footer-info-item">
-              <MapPin size={20} style={{ color: 'var(--color-primary)', flexShrink: 0 }} />
-              <span style={{ fontSize: '0.9rem' }}>JL Profesor Jl. Prof. M. Yamin No.74, Ps. Batang, Pasar Batang, Brebes, Brebes Regency, Central Java 52211</span>
-            </div>
-            <div className="footer-info-item">
-              <Phone size={20} style={{ color: 'var(--color-primary)', flexShrink: 0 }} />
-              <span style={{ fontSize: '0.9rem' }}>(0283) 672122</span>
-            </div>
-            <div className="footer-info-item">
-              <Mail size={20} style={{ color: 'var(--color-primary)', flexShrink: 0 }} />
-              <span style={{ fontSize: '0.9rem' }}>kontak@pasarbataang-kel.go.id</span>
-            </div>
-            <div className="footer-info-item">
-              <Clock size={20} style={{ color: 'var(--color-primary)', flexShrink: 0 }} />
-              <span style={{ fontSize: '0.9rem' }}>Senin - Sabtu | 06:00 - 17:00 WIB</span>
-            </div>
+            <h4 className="footer-title">Kontak Kami</h4>
+            <ul className="footer-links" style={{ listStyle: 'none', padding: 0 }}>
+              <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', marginBottom: '0.75rem' }}>
+                <MapPin size={16} style={{ color: 'var(--color-primary)', flexShrink: 0, marginTop: '2px' }} />
+                <span>Jl. Melati No. 12, Kebayoran, Jakarta Selatan, DKI Jakarta 12160</span>
+              </li>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
+                <Phone size={16} style={{ color: 'var(--color-primary)', flexShrink: 0 }} />
+                <span>(021) 7654-3210</span>
+              </li>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
+                <Mail size={16} style={{ color: 'var(--color-primary)', flexShrink: 0 }} />
+                <span>kontak@mekarsari-kel.go.id</span>
+              </li>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <Clock size={16} style={{ color: 'var(--color-primary)', flexShrink: 0 }} />
+                <span>Senin - Jumat | 08:00 - 16:00 WIB</span>
+              </li>
+            </ul>
           </div>
+
         </div>
 
         {/* Bottom footer */}

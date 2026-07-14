@@ -4,7 +4,7 @@ import { createClient } from '@supabase/supabase-js';
 const supabaseUrl = 'https://vsjiblsysajpesvaznwq.supabase.co';
 const supabaseAnonKey = 'sb_publishable_UjwDdAuHQ55cAjjax_l4QA_yg9q-MMe';
 
-// Selalu terkoneksi karena kredensial sudah valid
+// Selalu terkoneksi jika Supabase URL dan Key valid
 export const isSupabaseConfigured = true;
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);

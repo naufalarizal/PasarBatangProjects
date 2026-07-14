@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { Menu, X, Landmark, AlertCircle } from 'lucide-react';
+import { Menu, X, AlertCircle } from 'lucide-react';
 import { isSupabaseConfigured } from '../supabaseClient';
+import logoBrebes from '../assets/img/brebes.png';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [showBanner, setShowBanner] = useState(!isSupabaseConfigured);
+
+  // Mencegah scroll pada body saat menu mobile terbuka
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
 
   return (
     <>
@@ -19,7 +32,7 @@ export default function Navbar() {
       <header className="navbar-wrapper">
         <div className="container navbar-container">
           <Link to="/" className="logo-link">
-            <Landmark size={32} style={{ color: 'var(--color-primary)' }} />
+            <img src={logoBrebes} alt="Logo Kabupaten Brebes" style={{ width: '40px', height: '40px', objectFit: 'contain' }} />
             <div>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <span className="logo-text" style={{ fontSize: '1.3rem', fontWeight: 800 }}>
@@ -58,11 +71,6 @@ export default function Navbar() {
                   Galeri
                 </NavLink>
               </li>
-              <li>
-                <NavLink to="/kontak" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-                  Kontak
-                </NavLink>
-              </li>
             </ul>
           </nav>
 
@@ -99,11 +107,6 @@ export default function Navbar() {
               <li>
                 <NavLink to="/galeri" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} onClick={() => setIsOpen(false)}>
                   Galeri
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/kontak" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} onClick={() => setIsOpen(false)}>
-                  Kontak
                 </NavLink>
               </li>
             </ul>

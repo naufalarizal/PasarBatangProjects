@@ -75,7 +75,7 @@ export default function Galeri() {
         ) : (
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(260px, 100%), 1fr))',
             gap: '2rem'
           }}>
             {images.map((img, idx) => (
@@ -90,7 +90,7 @@ export default function Galeri() {
                   cursor: 'pointer',
                   boxShadow: 'var(--shadow-sm)',
                   border: '1px solid var(--color-border)',
-                  backgroundColor: '#fff'
+                  backgroundColor: 'var(--color-card-light)'
                 }}
                 onMouseOver={(e) => {
                   const overlay = e.currentTarget.querySelector('.overlay-gallery');
